@@ -3,7 +3,7 @@ from src.utils.iimage import IImage
 
 class InputImage:
     def to(self, device): return InputImage(self.image, device = device)
-    def cuda(self): return InputImage(self.image, device = 'cuda')
+    def cuda(self): return InputImage(self.image, device = 'cuda:1')
     def cpu(self): return InputImage(self.image, device = 'cpu')
     
     def __init__(self, input_image):

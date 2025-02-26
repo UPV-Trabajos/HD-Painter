@@ -63,14 +63,14 @@ download_file(DOWNLOAD_URL, MODEL_PATH)
 
 model = MLP(768)
 model.load_state_dict(torch.load(MODEL_PATH))
-model.to('cuda')
+model.to('cuda:1')
 model.eval()
 
-clip_model, clip_preprocess = clip.load('ViT-L/14', device='cuda')
+clip_model, clip_preprocess = clip.load('ViT-L/14', device='cuda:1')
 
 
 def get_score(image: Image) -> float:
-    image = clip_preprocess(image).unsqueeze(0).to('cuda')
+    image = clip_preprocess(image).unsqueeze(0).to('cuda:1')
     with torch.no_grad():
         image_features = clip_model.encode_image(image).float()
     im_emb_arr = normalized(image_features.cpu().detach().numpy() )

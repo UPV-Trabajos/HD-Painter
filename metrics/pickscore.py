@@ -3,7 +3,7 @@ from PIL import Image
 from transformers import AutoProcessor, AutoModel
 
 # load model
-device = 'cuda'
+device = 'cuda:1'
 processor_name_or_path = 'laion/CLIP-ViT-H-14-laion2B-s32B-b79K'
 model_pretrained_name_or_path = 'yuvalkirstain/PickScore_v1'
 

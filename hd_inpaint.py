@@ -53,7 +53,7 @@ def get_inpainting_function(
     eta: float = 0.25,
     guidance_scale: float = 7.5
 ):
-    inp_model = models.load_inpainting_model(model_id, device='cuda:0', cache=True)
+    inp_model = models.load_inpainting_model(model_id, device='cuda:1', cache=True)
     
     if 'rasg' in method:
         runner = rasg
@@ -88,10 +88,10 @@ def get_inpainting_sr_function(
     blend_trick=True,
     blend_output=True
 ):
-    sr_model = models.sd2_sr.load_model(device='cuda:0')
+    sr_model = models.sd2_sr.load_model(device='cuda:1')
     sam_predictor = None
     if use_sam_mask:
-        sam_predictor = models.sam.load_model(device='cuda:0')
+        sam_predictor = models.sam.load_model(device='cuda:1')
 
     def run(inpainted_image: Image, image: Image, mask: Image, prompt: str, seed: int = 1) -> Image:
         return sr.run(

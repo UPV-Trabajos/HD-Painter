@@ -65,7 +65,7 @@ def run(
         if share.timestep <= 500: router.reset()
 
         _zt = zt if unet_condition is None else torch.cat([zt, unet_condition], 1)
-        with torch.autocast('cuda'):
+        with torch.autocast('cuda:1'):
             eps_uncond, eps = ddim.unet(
                 torch.cat([_zt, _zt]).to(dtype), 
                 timesteps = torch.tensor([timestep, timestep]).cuda(), 

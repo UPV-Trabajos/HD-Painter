@@ -116,7 +116,7 @@ def run(
     unet_condition = lr_image.to(dtype=dtype, device=device, memory_format=torch.contiguous_format)
     unet_condition, noise_level = ddim.low_scale_model(unet_condition, noise_level=noise_level)
 
-    with torch.autocast('cuda'), torch.no_grad():
+    with torch.autocast('cuda:1'), torch.no_grad():
         zt = torch.randn((1,4,unet_condition.shape[2], unet_condition.shape[3]))
         zt = zt.cuda().to(dtype=dtype, device=device)
         for index,t in enumerate(range(999, 0, -dt)):

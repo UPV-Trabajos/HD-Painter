@@ -9,7 +9,7 @@ from utils import get_mask_bbox, pad2square
 _clip_score = CLIPScore(model_name_or_path='openai/clip-vit-base-patch16').cuda()
 
 
-def get_score(image: Image, prompt: str, mask: Image = None, device='cuda') -> float:
+def get_score(image: Image, prompt: str, mask: Image = None, device='cuda:1') -> float:
     image = np.array(image)
     if mask is not None:
         mask = np.array(mask)

@@ -22,7 +22,7 @@ class DDIM:
         else:
             zT = torch.randn(shape).cuda()
 
-        with torch.autocast('cuda'), torch.no_grad():
+        with torch.autocast('cuda:1'), torch.no_grad():
             if context is None: context = self.encoder.encode([negative_prompt, prompt])
 
             zt = zT

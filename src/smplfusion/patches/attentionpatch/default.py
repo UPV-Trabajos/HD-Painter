@@ -21,7 +21,7 @@ def forward_sd2(self, x, context=None, mask=None):
         q, k, v = map(lambda t: rearrange(t, 'b n (h d) -> (b h) n d', h=h), (q, k, v))
         
         if _ATTN_PRECISION =="fp32": # force cast to fp32 to avoid overflowing 
-            with torch.autocast(enabled=False, device_type = 'cuda'):
+            with torch.autocast(enabled=False, device_type = 'cuda:1'):
                 q, k = q.float(), k.float()
                 sim = einsum('b i d, b j d -> b i j', q, k) * self.scale
         else:

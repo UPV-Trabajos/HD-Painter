@@ -27,7 +27,7 @@ def forward(self, x, context=None):
 
         cross_q, cross_k, cross_v = map(lambda t: rearrange(t, "b n (h d) -> (b h) n d", h=cross_h), (cross_q, cross_k, cross_v))
 
-        with torch.autocast(enabled=False, device_type = 'cuda'):
+        with torch.autocast(enabled=False, device_type = 'cuda:1'):
             cross_q, cross_k = cross_q.float(), cross_k.float()
             cross_sim = einsum('b i d, b j d -> b i j', cross_q, cross_k) * self.attn2.scale
         

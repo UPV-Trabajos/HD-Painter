@@ -3,7 +3,7 @@ from src.utils.iimage import IImage
 
 class InputMask:
     def to(self, device): return InputMask(self.image, device = device)
-    def cuda(self): return InputMask(self.image, device = 'cuda')
+    def cuda(self): return InputMask(self.image, device = 'cuda:1')
     def cpu(self): return InputMask(self.image, device = 'cpu')
 
     def __init__(self, input_image, device = 'cpu'):
@@ -71,7 +71,7 @@ class InputMask:
 
 class InputMask2:
     def to(self, device): return InputMask2(self.image, device = device)
-    def cuda(self): return InputMask2(self.image, device = 'cuda')
+    def cuda(self): return InputMask2(self.image, device = 'cuda:1')
     def cpu(self): return InputMask2(self.image, device = 'cpu')
 
     def __init__(self, input_image, device = 'cpu'):

@@ -12,7 +12,7 @@ from utils import get_mask_bbox
 
 
 class MMDetClassifier:
-    def __init__(self, device='cuda', dest_root='./checkpoints/eval/mmdetection'):
+    def __init__(self, device='cuda:1', dest_root='./checkpoints/eval/mmdetection'):
         register_all_modules()
         Path(dest_root).mkdir(parents=True, exist_ok=True)
         config_file = f'{dest_root}/rtmdet_tiny_8xb32-300e_coco.py'

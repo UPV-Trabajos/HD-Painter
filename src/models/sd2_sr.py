@@ -153,7 +153,7 @@ def load_obj(path):
     return get_obj_from_str(objyaml['__class__'])(**objyaml.get("__init__", {}))
     
 
-def load_model(dtype=torch.bfloat16, device='cuda:0'):
+def load_model(dtype=torch.bfloat16, device='cuda:1'):
     download_file(DOWNLOAD_URL, MODEL_PATH)
 
     state_dict = safetensors.torch.load_file(MODEL_PATH)
@@ -193,7 +193,7 @@ def load_model(dtype=torch.bfloat16, device='cuda:0'):
         'max_noise_level': 350
     }
 
-    low_scale_model = ImageConcatWithNoiseAugmentation(**params).eval().to('cuda')
+    low_scale_model = ImageConcatWithNoiseAugmentation(**params).eval().to('cuda:1')
     low_scale_model.train = disabled_train
     for param in low_scale_model.parameters():
         param.requires_grad = False

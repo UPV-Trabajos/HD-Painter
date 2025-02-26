@@ -64,7 +64,7 @@ class IImage:
         return self
 
     def cuda(self):
-        self.device = 'cuda'
+        self.device = 'cuda:1'
         return self
 
     def cpu(self):
